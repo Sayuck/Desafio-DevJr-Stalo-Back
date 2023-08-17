@@ -11,6 +11,13 @@ class Task extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     */
+    protected $fillable = [
+        'title', 'description', 'completed', 'user_id'
+    ];
+
+    /**
      * Define the relationship between tasks and users.
      *
      * @return BelongsTo

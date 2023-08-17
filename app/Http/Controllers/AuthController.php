@@ -12,9 +12,6 @@ class AuthController extends Controller
     /**
      * Handle the incoming request.
      */
-    // public function __invoke(Request $request)
-    // {
-    // }
     public function login(Request $request)
     {
         $credentials = $request->validate([

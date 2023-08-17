@@ -40,8 +40,6 @@ Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware('
 /**
  * Task routes
  */
-
-
 Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth:sanctum')->name('tasks.index');
 Route::post('/tasks', [TaskController::class, 'store'])->middleware('auth:sanctum')->name('tasks.store');
 Route::get('/tasks/{task}', [TaskController::class, 'show'])->middleware('auth:sanctum')->name('tasks.show');

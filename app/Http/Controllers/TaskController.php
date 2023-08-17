@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 
 class TaskController extends Controller
 {
@@ -25,14 +22,21 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $user = auth()->user();
+        $user = auth()->user(); // Get the currently authenticated user
         $data = $request->validate([
             'title' => 'required|string',
             'description' => 'nullable|string',
-            'completed' => 'boolean',
+            'completed' => 'nullable|boolean',
         ]); // Validate the request data
+        // Create a new task for the authenticated user
+        $task = $user->tasks()->create($data);
+        // $task = $user->tasks()->create([
+        //     'title' => $data['title'],
+        //     'description' => $data['description'] ?? null,
+        //     'completed' => $data['completed'] ?? false,
+        // ]); // Return a JSON response with the new task
 
-        $task = $user->tasks()->create($data); // Create a new task for the authenticated user
+
         return response()->json($task, 201);
     }
 
