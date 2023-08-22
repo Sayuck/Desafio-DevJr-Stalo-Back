@@ -24,18 +24,11 @@ class TaskController extends Controller
     {
         $user = auth()->user(); // Get the currently authenticated user
         $data = $request->validate([
-            'title' => 'required|string',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
             'completed' => 'nullable|boolean',
-        ]); // Validate the request data
-        // Create a new task for the authenticated user
-        $task = $user->tasks()->create($data);
-        // $task = $user->tasks()->create([
-        //     'title' => $data['title'],
-        //     'description' => $data['description'] ?? null,
-        //     'completed' => $data['completed'] ?? false,
-        // ]); // Return a JSON response with the new task
+        ]);
 
+        $task = $user->tasks()->create($data);
 
         return response()->json($task, 201);
     }

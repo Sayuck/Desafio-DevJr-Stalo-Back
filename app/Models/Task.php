@@ -14,7 +14,7 @@ class Task extends Model
      * The attributes that are mass assignable.
      */
     protected $fillable = [
-        'title', 'description', 'completed', 'user_id'
+        'description', 'completed', 'user_id'
     ];
 
     /**
